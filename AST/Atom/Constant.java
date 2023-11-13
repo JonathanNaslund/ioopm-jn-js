@@ -1,5 +1,15 @@
 package AST.Atom;
 
+import AST.SymbolicExpression;
+
 public class Constant extends Atom {
- private double value;    
+
+    public Constant(SymbolicExpression value) {
+        super(value);
+    }
+
+    @Override
+    public boolean isConstant() {
+        return true;
+    }
 }

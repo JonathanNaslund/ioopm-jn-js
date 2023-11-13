@@ -2,6 +2,9 @@ package AST.Command;
 
 import AST.SymbolicExpression;
 
-public abstract class Command extends SymbolicExpression{
-    
+public class Command extends SymbolicExpression{
+ 
+    public Command() {
+        
+    }
 }
