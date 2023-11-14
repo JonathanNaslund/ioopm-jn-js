@@ -10,4 +10,7 @@ public class Addition extends Binary {
     public String getName() {
         return "+";
     }
+    public String toString() {
+	    return lhs.toString() + this.getName() + rhs.toString();
+    }
 }

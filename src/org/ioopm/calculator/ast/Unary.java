@@ -10,4 +10,7 @@ public abstract class Unary extends SymbolicExpression {
         this.expression = expression;
         this.name = name;
     }
+    public String toString() {
+     return this.getName() + " " + this.expression.toString();
+    }
 }
