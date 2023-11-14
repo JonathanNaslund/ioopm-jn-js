@@ -10,11 +10,5 @@ public class Addition extends Binary {
     public String getName() {
         return "+";
     }
-    public String toString() {
-	    if(getPriority() == 3) {
-	    	return "(" + lhs.toString() + this.getName() + rhs.toString() + ")";
-	    } else {
-	    	return lhs.toString() + this.getName() + rhs.toString();
-	    }
-    }
+    
 }

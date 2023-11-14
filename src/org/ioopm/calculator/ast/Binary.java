@@ -43,7 +43,12 @@ public abstract class Binary extends SymbolicExpression {
             }
         }
     }
+
     public String toString() {
-     return String.valueOf(lhs) + " " + name + " " + String.valueOf(rhs);
+	    if(getPriority() == 3) {
+	    	return "(" + lhs.toString() + " " + this.getName() + " " + rhs.toString() + ")";
+	    } else {
+	    	return lhs.toString() + " " + this.getName() + " " + rhs.toString();
+	    }
     }
 }

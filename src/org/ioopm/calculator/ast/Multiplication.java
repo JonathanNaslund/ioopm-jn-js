@@ -10,7 +10,4 @@ public class Multiplication extends Binary {
     public String getName() {
         return "*";
     }
-    public String toString() {
-	    return this.lhs.toString() + this.getName() + this.rhs.toString();
-    }
 }

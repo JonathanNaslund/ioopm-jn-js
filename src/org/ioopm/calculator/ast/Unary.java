@@ -1,7 +1,7 @@
 package org.ioopm.calculator.ast;
 
 public abstract class Unary extends SymbolicExpression {
-    private SymbolicExpression expression;
+    protected SymbolicExpression expression;
     private String name;
 
     public Unary(SymbolicExpression expression, String name) {
@@ -10,6 +10,6 @@ public abstract class Unary extends SymbolicExpression {
         this.name = name;
     }
     public String toString() {
-     return this.getName() + " " + this.expression.toString();
+        return this.getName() + " (" + this.expression.toString() + ")";
     }
 }
