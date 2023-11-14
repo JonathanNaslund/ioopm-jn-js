@@ -12,4 +12,17 @@ public abstract class Unary extends SymbolicExpression {
     public String toString() {
         return this.getName() + " (" + this.expression.toString() + ")";
     }
+
+    public boolean equals(SymbolicExpression other) {
+        if (!other.isAtom()) {
+            if (this.name.compareTo(other.getName()) == 0) {
+                Unary tmpBinary = (Unary) other;
+                return (this.expression.equals(tmpBinary.expression)); 
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
 }

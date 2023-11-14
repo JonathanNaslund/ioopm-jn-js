@@ -1,21 +1,30 @@
 package org.ioopm.calculator.ast;
 
 public class Constant extends Atom {
-    private double value;
+    
     public Constant(double value) {
         super(value);
-        this.value=value;
     }
 
     @Override
     public boolean isConstant() {
         return true;
     }
-    @Override
-    public double getValue() {
-     return value;
-    }
+    
     public String toString() {
-     return String.valueOf(this.value);
+     return String.valueOf(getValue());
+    }
+
+    public boolean equals(Object other) {
+        if (other instanceof Constant) {
+            return this.equals((Constant) other);
+        } else {
+            return false;
+        }
+    }
+    
+    public boolean equals(Constant other) {
+        /// access a private field of other!
+        return getValue() == other.getValue();
     }
 }

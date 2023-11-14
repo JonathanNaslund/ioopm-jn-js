@@ -51,4 +51,17 @@ public abstract class Binary extends SymbolicExpression {
 	    	return lhs.toString() + " " + this.getName() + " " + rhs.toString();
 	    }
     }
+
+    public boolean equals(SymbolicExpression other) {
+        if (!other.isAtom()) {
+            if (this.name.compareTo(other.getName()) == 0) {
+                Binary tmpBinary = (Binary) other;
+                return (this.lhs.equals(tmpBinary.lhs) && this.rhs.equals(tmpBinary.rhs)); 
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
 }

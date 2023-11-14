@@ -1,9 +1,14 @@
 import org.ioopm.calculator.ast.*;
 
 public class Test {
- public void testEvaluating(double expected, SymbolicExpression e) {
-  //SumbolicExpression e = 
- }
+    public void testEvaluating(SymbolicExpression expected, SymbolicExpression e) {
+        // SymbolicExpression r = e.eval();
+        if (e.equals(expected)) {
+            System.out.println("Passed: " + e);
+        } else {
+            System.out.println("Error: expected '" + expected + "' but got '" + e + "'");
+        }
+    }
  public static void main(String[] args) {
   Constant c1 = new Constant(5);
   Constant c2 = new Constant(2);

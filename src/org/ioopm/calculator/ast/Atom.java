@@ -15,6 +15,11 @@ public class Atom extends SymbolicExpression{
 	public String getVariable() {
 		return variable;
 	}
+	public double getValue() {
+		return value;
+	}
+    
+
     @Override
     public boolean isAtom() {
         return true;
