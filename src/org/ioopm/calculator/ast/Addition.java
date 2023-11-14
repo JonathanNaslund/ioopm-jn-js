@@ -3,7 +3,7 @@ package org.ioopm.calculator.ast;
 public class Addition extends Binary {
 
     public Addition(SymbolicExpression lhs, SymbolicExpression rhs) {
-        super(lhs, rhs, "+");
+        super(lhs, rhs, "+", 1);
     }
 
     @Override
@@ -11,6 +11,10 @@ public class Addition extends Binary {
         return "+";
     }
     public String toString() {
-	    return lhs.toString() + this.getName() + rhs.toString();
+	    if(getPriority() == 3) {
+	    	return "(" + lhs.toString() + this.getName() + rhs.toString() + ")";
+	    } else {
+	    	return lhs.toString() + this.getName() + rhs.toString();
+	    }
     }
 }
