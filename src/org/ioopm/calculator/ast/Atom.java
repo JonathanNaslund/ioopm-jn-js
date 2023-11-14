@@ -1,7 +1,5 @@
 package org.ioopm.calculator.ast;
 
-import AST.SymbolicExpression;
-
 public class Atom extends SymbolicExpression{
     private SymbolicExpression value;
     

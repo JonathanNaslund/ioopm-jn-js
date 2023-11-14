@@ -1,10 +1,8 @@
 package org.ioopm.calculator.ast;
 
-import AST.SymbolicExpression;
-
 public class Division extends Binary {
     
-    Division(SymbolicExpression lhs, SymbolicExpression rhs) {
+  public  Division(SymbolicExpression lhs, SymbolicExpression rhs) {
         super(lhs, rhs, "/");
     }
 

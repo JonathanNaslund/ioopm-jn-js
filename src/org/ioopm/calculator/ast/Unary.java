@@ -1,8 +1,7 @@
 package org.ioopm.calculator.ast;
 
-import AST.SymbolicExpression;
 
-public class Unary extends SymbolicExpression {
+public abstract class Unary extends SymbolicExpression {
     private SymbolicExpression expression;
     private String name;
 

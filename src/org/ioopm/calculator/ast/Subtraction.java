@@ -4,7 +4,7 @@ import AST.SymbolicExpression;
 
 public class Subtraction extends Binary {
     
-    Subtraction(SymbolicExpression lhs, SymbolicExpression rhs) {
+    public    Subtraction(SymbolicExpression lhs, SymbolicExpression rhs) {
         super(lhs, rhs, "-");
     }
 

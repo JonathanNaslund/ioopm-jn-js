@@ -1,7 +1,5 @@
 package org.ioopm.calculator.ast;
 
-import AST.SymbolicExpression;
-
 public class Constant extends Atom {
     private double value;
     public Constant(double value) {
@@ -12,5 +10,9 @@ public class Constant extends Atom {
     @Override
     public boolean isConstant() {
         return true;
+    }
+    @Override
+    public double getValue() {
+     return value;
     }
 }

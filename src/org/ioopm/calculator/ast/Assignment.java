@@ -4,7 +4,7 @@ import AST.SymbolicExpression;
 
 public class Assignment extends Binary {
     
-    Assignment(SymbolicExpression lhs, SymbolicExpression rhs) {
+    public Assignment(SymbolicExpression lhs, SymbolicExpression rhs) {
         super(lhs, rhs, "=");
     }
 
