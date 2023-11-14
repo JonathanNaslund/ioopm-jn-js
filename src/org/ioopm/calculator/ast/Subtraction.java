@@ -1,6 +1,5 @@
 package org.ioopm.calculator.ast;
 
-import AST.SymbolicExpression;
 
 public class Subtraction extends Binary {
     
