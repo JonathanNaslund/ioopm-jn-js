@@ -1,7 +1,7 @@
 import org.ioopm.calculator.ast.*;
 
 public class Test {
-    public void testEvaluating(SymbolicExpression expected, SymbolicExpression e) {
+    static void testEvaluating(SymbolicExpression expected, SymbolicExpression e) {
         // SymbolicExpression r = e.eval();
         if (e.equals(expected)) {
             System.out.println("Passed: " + e);
@@ -17,5 +17,14 @@ public class Test {
   Addition a = new Addition(c1, v);
   Multiplication m = new Multiplication(a, c2);
   System.out.println("(5 + x) * 2 ==> " + m.toString());
+
+  Constant c3 = new Constant(5);
+  Constant c4 = new Constant(2);
+  //System.out.println("C2: " + c2.toString());
+  Variable g = new Variable("x");
+  Addition b = new Addition(c3, g);
+  Multiplication n = new Multiplication(b, c4);
+
+  testEvaluating(n, m);
  }
 }

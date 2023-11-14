@@ -24,7 +24,6 @@ public class Constant extends Atom {
     }
     
     public boolean equals(Constant other) {
-        /// access a private field of other!
         return getValue() == other.getValue();
     }
 }

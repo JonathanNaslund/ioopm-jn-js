@@ -52,14 +52,11 @@ public abstract class Binary extends SymbolicExpression {
 	    }
     }
 
-    public boolean equals(SymbolicExpression other) {
-        if (!other.isAtom()) {
-            if (this.name.compareTo(other.getName()) == 0) {
-                Binary tmpBinary = (Binary) other;
-                return (this.lhs.equals(tmpBinary.lhs) && this.rhs.equals(tmpBinary.rhs)); 
-            } else {
-                return false;
-            }
+    @Override
+    public boolean equals(Object other) {
+        if (other instanceof Binary) {
+            Binary tmpBinary = (Binary) other;
+            return (this.lhs.equals(tmpBinary.lhs) && this.rhs.equals(tmpBinary.rhs)); 
         } else {
             return false;
         }

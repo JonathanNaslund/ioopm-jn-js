@@ -19,7 +19,6 @@ public class Variable extends Atom {
     }
     
     public boolean equals(Variable other) {
-        /// access a private field of other!
-        return getVariable() == other.getVariable();
+        return getVariable().compareTo(other.getVariable()) == 0;
     }
 }
