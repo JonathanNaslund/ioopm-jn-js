@@ -16,7 +16,8 @@ public class Test {
   Variable v = new Variable("x");
   Addition a = new Addition(c1, v);
   Multiplication m = new Multiplication(a, c2);
-  System.out.println("(5 + x) * 2 ==> " + m.toString());
+
+  System.out.println("(5 + x) * 2 ==> " + m.eval().toString());
 
   Constant c3 = new Constant(5);
   Constant c4 = new Constant(2);
@@ -25,6 +26,13 @@ public class Test {
   Addition b = new Addition(c3, g);
   Multiplication n = new Multiplication(b, c4);
 
-  testEvaluating(n, m);
+  //testEvaluating(n, m);
+
+  Constant c5 = new Constant(5);
+  Constant c6 = new Constant(2);
+  Addition c = new Addition(c5, c6);
+  Multiplication k = new Multiplication(c5, c6);
+  System.out.println("5 + 2 ==> " + c.eval().toString());
+  System.out.println("5 * 2 ==> " + k.eval().toString());
  }
 }

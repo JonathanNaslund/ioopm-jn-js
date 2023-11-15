@@ -28,4 +28,8 @@ public abstract class SymbolicExpression {
     public void setPriority(int priority) {
         this.priority = priority;
     }
+    public SymbolicExpression eval() {
+
+        throw new RuntimeException("getValue() called on something which is not a constant");
+    }
 }
