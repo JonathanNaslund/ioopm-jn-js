@@ -10,9 +10,11 @@ public class Division extends Binary {
     public String getName() {
         return "/";
     }
-    public SymbolicExpression eval() {
-	SymbolicExpression tempLhs = lhs.eval();
-	SymbolicExpression tempRhs = rhs.eval();
+
+    @Override
+    public SymbolicExpression eval(Environment vars) {
+	SymbolicExpression tempLhs = lhs.eval(vars);
+	SymbolicExpression tempRhs = rhs.eval(vars);
 	if(tempRhs.getValue() == 0) {
            throw new RuntimeException("Division by 0");
 	}

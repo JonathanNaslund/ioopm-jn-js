@@ -10,25 +10,25 @@ public class Multiplication extends Binary {
     public String getName() {
         return "*";
     }
-    public SymbolicExpression eval() {
-    	SymbolicExpression tempLhs = lhs.eval();
-	SymbolicExpression tempRhs = rhs.eval();
+    public SymbolicExpression eval(Environment vars) {
+    	SymbolicExpression tempLhs = lhs.eval(vars);
+	SymbolicExpression tempRhs = rhs.eval(vars);
      if(tempLhs.isConstant() && tempRhs.isConstant()) {
       return new Constant(tempLhs.getValue() * tempRhs.getValue());
      }
      else if(tempLhs.isConstant()) {
 	if(tempRhs.isVariable()) {
-	      return new Multiplication(tempLhs, tempRhs).eval();
+	      return new Multiplication(tempLhs, tempRhs).eval(vars);
 	} else if(tempRhs instanceof Unary) {
-	      return new Multiplication(tempLhs, tempRhs).eval();
+	      return new Multiplication(tempLhs, tempRhs).eval(vars);
 	} else {
 		Binary tempBinary = (Binary) tempRhs;
 		 if(tempBinary.getName() == "+") {
-			 return new Addition(new Multiplication(tempLhs, tempBinary.lhs), new Multiplication(tempLhs, tempBinary.rhs)).eval();
+			 return new Addition(new Multiplication(tempLhs, tempBinary.lhs), new Multiplication(tempLhs, tempBinary.rhs)).eval(vars);
 		 }
 		 else {
 			 //(tempBinary.getName() == "-") {
-			 return new Subtraction(new Multiplication(tempLhs, tempBinary.lhs), new Multiplication(tempLhs, tempBinary.rhs)).eval();
+			 return new Subtraction(new Multiplication(tempLhs, tempBinary.lhs), new Multiplication(tempLhs, tempBinary.rhs)).eval(vars);
 		 }
 	}
      }
@@ -36,11 +36,11 @@ public class Multiplication extends Binary {
 	if(tempLhs.isVariable()) {
 	      return new Multiplication(tempLhs, tempRhs);
 	} else if(tempLhs instanceof Unary) {
-	      return new Multiplication(tempLhs, tempRhs).eval();
+	      return new Multiplication(tempLhs, tempRhs).eval(vars);
 	} else {
 		Binary tempBinary = (Binary) tempLhs;
 		 if(tempBinary.getName() == "+") {
-			 return new Addition(new Multiplication(tempBinary.lhs, tempRhs), new Multiplication(tempBinary.rhs, tempRhs)).eval();
+			 return new Addition(new Multiplication(tempBinary.lhs, tempRhs), new Multiplication(tempBinary.rhs, tempRhs)).eval(vars);
 		 }
 		 else { 
 			 //(tempBinary.getName() == "-") {

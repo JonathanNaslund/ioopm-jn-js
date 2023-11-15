@@ -10,4 +10,14 @@ public class Cos extends Unary {
     public String getName() {
         return "Cos";
     }
+
+    @Override
+    public SymbolicExpression eval(Environment vars) {
+        SymbolicExpression arg = this.expression.eval(vars);
+        if (arg.isConstant()) {
+            return new Constant(Math.cos(arg.getValue()));
+        } else {
+            return new Cos(arg);
+        }
+    }
 }

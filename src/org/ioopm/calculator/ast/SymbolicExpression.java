@@ -31,8 +31,7 @@ public abstract class SymbolicExpression {
     public void setPriority(int priority) {
         this.priority = priority;
     }
-    public SymbolicExpression eval() {
-
+    public SymbolicExpression eval(Environment vars) {
         throw new RuntimeException("getValue() called on something which is not a constant");
     }
 }

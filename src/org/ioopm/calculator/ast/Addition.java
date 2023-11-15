@@ -11,18 +11,18 @@ public class Addition extends Binary {
         return "+";
     }
     @Override
-    public SymbolicExpression eval() {
+    public SymbolicExpression eval(Environment vars) {
      if(lhs.isConstant() && rhs.isConstant()) {
       return new Constant(lhs.getValue() + rhs.getValue());
      }
      else if(lhs.isConstant()) {
-      return new Addition(lhs, rhs.eval());
+      return new Addition(lhs, rhs.eval(vars));
      }
      else if(rhs.isConstant()) {
-      return new Addition(lhs.eval(), rhs);
+      return new Addition(lhs.eval(vars), rhs);
      }
      else {
-      return new Addition(lhs.eval(),  rhs.eval());
+      return new Addition(lhs.eval(vars),  rhs.eval(vars));
      }
     }
 }

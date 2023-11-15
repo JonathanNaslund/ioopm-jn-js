@@ -10,4 +10,14 @@ public class Sin extends Unary{
     public String getName() {
         return "Sin";
     }
+
+    @Override
+    public SymbolicExpression eval(Environment vars) {
+        SymbolicExpression arg = this.expression.eval(vars);
+        if (arg.isConstant()) {
+            return new Constant(Math.sin(arg.getValue()));
+        } else {
+            return new Sin(arg);
+        }
+    }
 }
