@@ -21,4 +21,12 @@ public class Variable extends Atom {
     public boolean equals(Variable other) {
         return getVariable().compareTo(other.getVariable()) == 0;
     }
+    @Override
+    public boolean isVariable() {
+        return true;
+    }
+    @Override
+    public SymbolicExpression eval() {
+     return new Variable(this.getVariable());
+    }
 }

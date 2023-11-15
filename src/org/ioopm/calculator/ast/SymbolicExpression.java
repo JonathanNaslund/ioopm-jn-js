@@ -5,6 +5,9 @@ public abstract class SymbolicExpression {
     public boolean isConstant() {
         return false;
     }
+    public boolean isVariable() {
+        return false;
+    }
 
     public SymbolicExpression(int priority) {
         this.priority = priority;

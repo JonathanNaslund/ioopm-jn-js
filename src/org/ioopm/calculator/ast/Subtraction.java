@@ -18,4 +18,18 @@ public class Subtraction extends Binary {
 	    	return lhs.toString() + this.getName() + rhs.toString();
 	    }
     }
+    public SymbolicExpression eval() {
+     if(lhs.isConstant() && rhs.isConstant()) {
+      return new Constant(lhs.getValue() - rhs.getValue());
+     }
+     else if(lhs.isConstant()) {
+      return new Subtraction(lhs, rhs.eval());
+     }
+     else if(rhs.isConstant()) {
+      return new Subtraction(lhs.eval(), rhs);
+     }
+     else {
+      return new Subtraction(lhs.eval(),  rhs.eval());
+     }
+    }
 }

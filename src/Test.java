@@ -34,5 +34,9 @@ public class Test {
   Multiplication k = new Multiplication(c5, c6);
   System.out.println("5 + 2 ==> " + c.eval().toString());
   System.out.println("5 * 2 ==> " + k.eval().toString());
+  Constant c7 = new Constant(5);
+  Constant c8 = new Constant(0);
+  Division D = new Division(c7, c8);
+  System.out.println(D.eval().toString());
  }
 }

@@ -11,11 +11,45 @@ public class Multiplication extends Binary {
         return "*";
     }
     public SymbolicExpression eval() {
-     if(lhs.isConstant() && rhs.isConstant()) {
-      return new Constant(lhs.getValue() * rhs.getValue());
+    	SymbolicExpression tempLhs = lhs.eval();
+	SymbolicExpression tempRhs = rhs.eval();
+     if(tempLhs.isConstant() && tempRhs.isConstant()) {
+      return new Constant(tempLhs.getValue() * tempRhs.getValue());
+     }
+     else if(tempLhs.isConstant()) {
+	if(tempRhs.isVariable()) {
+	      return new Multiplication(tempLhs, tempRhs).eval();
+	} else if(tempRhs instanceof Unary) {
+	      return new Multiplication(tempLhs, tempRhs).eval();
+	} else {
+		Binary tempBinary = (Binary) tempRhs;
+		 if(tempBinary.getName() == "+") {
+			 return new Addition(new Multiplication(tempLhs, tempBinary.lhs), new Multiplication(tempLhs, tempBinary.rhs)).eval();
+		 }
+		 else {
+			 //(tempBinary.getName() == "-") {
+			 return new Subtraction(new Multiplication(tempLhs, tempBinary.lhs), new Multiplication(tempLhs, tempBinary.rhs)).eval();
+		 }
+	}
+     }
+     else if(tempRhs.isConstant()) {
+	if(tempLhs.isVariable()) {
+	      return new Multiplication(tempLhs, tempRhs);
+	} else if(tempLhs instanceof Unary) {
+	      return new Multiplication(tempLhs, tempRhs).eval();
+	} else {
+		Binary tempBinary = (Binary) tempLhs;
+		 if(tempBinary.getName() == "+") {
+			 return new Addition(new Multiplication(tempBinary.lhs, tempRhs), new Multiplication(tempBinary.rhs, tempRhs)).eval();
+		 }
+		 else { 
+			 //(tempBinary.getName() == "-") {
+			 return new Subtraction(new Multiplication(tempBinary.lhs, tempRhs), new Multiplication(tempBinary.rhs, tempRhs));
+		 }
+	}
      }
      else {
-      return new Multiplication(lhs,  rhs);
+      return new Multiplication(tempLhs, tempRhs);
      }
     }
 }

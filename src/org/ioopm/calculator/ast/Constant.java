@@ -26,4 +26,8 @@ public class Constant extends Atom {
     public boolean equals(Constant other) {
         return getValue() == other.getValue();
     }
+    @Override
+    public SymbolicExpression eval() {
+     return new Constant(this.getValue());
+    }
 }
