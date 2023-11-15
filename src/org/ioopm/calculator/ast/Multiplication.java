@@ -10,4 +10,12 @@ public class Multiplication extends Binary {
     public String getName() {
         return "*";
     }
+    public SymbolicExpression eval() {
+     if(lhs.isConstant() && rhs.isConstant()) {
+      return new Constant(lhs.getValue() * rhs.getValue());
+     }
+     else {
+      return new Multiplication(lhs,  rhs);
+     }
+    }
 }

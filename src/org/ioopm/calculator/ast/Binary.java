@@ -45,4 +45,18 @@ public abstract class Binary extends SymbolicExpression {
             return false;
         }
     }
+    @Override
+    public SymbolicExpression eval() {
+      if(this.getName() == "+") {
+       return new Addition(lhs.eval(), rhs.eval());
+      }
+      else if(this.getName() == "-") {
+       return new Subtraction(lhs.eval(), rhs.eval());
+      }
+      else if(this.getName() == "*") {
+       return new Multiplication(lhs.eval(), rhs.eval());
+      } else {
+       return new Division(lhs.eval(), rhs.eval());
+      }
+    }
 }
