@@ -27,7 +27,7 @@ public class Variable extends Atom {
     }
     @Override
     public SymbolicExpression eval(Environment vars) {
-        SymbolicExpression arg = vars.get(getVariable());
+        SymbolicExpression arg = vars.get(this);
         if (arg == null) {
             return new Variable(this.getVariable());
         } else if(arg instanceof Addition) {

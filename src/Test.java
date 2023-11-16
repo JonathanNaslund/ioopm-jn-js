@@ -9,7 +9,9 @@ public class Test {
             System.out.println("Error: expected '" + expected + "' but got '" + e + "'");
         }
     }
- public static void main(String[] args) {
+ 
+public static void main(String[] args) {
+    Environment vars = new Environment();
   Constant c1 = new Constant(5);
   Constant c2 = new Constant(2);
   //System.out.println("C2: " + c2.toString());
@@ -17,7 +19,7 @@ public class Test {
   Addition a = new Addition(c1, v);
   Multiplication m = new Multiplication(a, c2);
 
-  System.out.println("(5 + x) * 2 ==> " + m.eval().toString());
+  System.out.println("(5 + x) * 2 ==> " + m.eval(vars).toString());
 
   Constant c3 = new Constant(5);
   Constant c4 = new Constant(2);
@@ -28,15 +30,29 @@ public class Test {
 
   //testEvaluating(n, m);
 
+//   Constant c5 = new Constant(5);
+//   Constant c6 = new Constant(2);
+//   Addition c = new Addition(c5, c6);
+//   Multiplication k = new Multiplication(c5, c6);
+//   System.out.println("5 + 2 ==> " + c.eval(vars).toString());
+//   System.out.println("5 * 2 ==> " + k.eval(vars).toString());
+//   Constant c7 = new Constant(5);
+//   Constant c8 = new Constant(0);
+//   Division D = new Division(c7, c8);
+//   System.out.println(D.eval(vars).toString());
+
   Constant c5 = new Constant(5);
   Constant c6 = new Constant(2);
-  Addition c = new Addition(c5, c6);
-  Multiplication k = new Multiplication(c5, c6);
-  System.out.println("5 + 2 ==> " + c.eval().toString());
-  System.out.println("5 * 2 ==> " + k.eval().toString());
-  Constant c7 = new Constant(5);
-  Constant c8 = new Constant(0);
-  Division D = new Division(c7, c8);
-  System.out.println(D.eval().toString());
+  //System.out.println("C2: " + c2.toString());
+  Variable v2 = new Variable("y");
+  Variable v3 = new Variable("z");
+//   Addition a2 = new Addition(v3, v2);
+  Addition a2 = new Addition(c5, v2);
+  Constant c7 = new Constant(10);
+  Assignment as1 = new Assignment(c7, v2, vars);
+  Multiplication m2 = new Multiplication(a2, c6);
+
+  System.out.println("(5 + y) * 2 ==> " + m2.eval(vars).toString());
+
  }
 }

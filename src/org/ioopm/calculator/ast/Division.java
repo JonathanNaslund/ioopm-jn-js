@@ -20,14 +20,7 @@ public class Division extends Binary {
 	}
      if(lhs.isConstant() && rhs.isConstant()) {
       return new Constant(lhs.getValue() / rhs.getValue());
-     }
-     else if(lhs.isConstant()) {
-      return new Division(tempLhs, tempRhs);
-     }
-     else if(rhs.isConstant()) {
-      return new Division(tempLhs, tempRhs);
-     }
-     else {
+     } else {
       return new Division(tempLhs,  tempRhs);
      }
     }

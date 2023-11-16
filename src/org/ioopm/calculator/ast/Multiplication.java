@@ -10,6 +10,19 @@ public class Multiplication extends Binary {
     public String getName() {
         return "*";
     }
+
+	// @Override
+    // public SymbolicExpression eval(Environment vars) {
+	// SymbolicExpression tempLhs = lhs.eval(vars);
+	// SymbolicExpression tempRhs = rhs.eval(vars);
+    //  if(lhs.isConstant() && rhs.isConstant()) {
+    //   return new Constant(lhs.getValue() * rhs.getValue());
+    //  } else {
+    //   return new Multiplication(tempLhs,  tempRhs);
+    //  }
+    // }
+
+	@Override
     public SymbolicExpression eval(Environment vars) {
     	SymbolicExpression tempLhs = lhs.eval(vars);
 	SymbolicExpression tempRhs = rhs.eval(vars);
@@ -40,11 +53,11 @@ public class Multiplication extends Binary {
 	} else {
 		Binary tempBinary = (Binary) tempLhs;
 		 if(tempBinary.getName() == "+") {
-			 return new Addition(new Multiplication(tempBinary.lhs, tempRhs), new Multiplication(tempBinary.rhs, tempRhs)).eval(vars);
+			 return new Addition(new Multiplication(tempBinary.lhs, tempRhs), new Multiplication(tempBinary.rhs, tempRhs)).eval(vars).eval(vars);
 		 }
 		 else { 
 			 //(tempBinary.getName() == "-") {
-			 return new Subtraction(new Multiplication(tempBinary.lhs, tempRhs), new Multiplication(tempBinary.rhs, tempRhs));
+			 return new Subtraction(new Multiplication(tempBinary.lhs, tempRhs), new Multiplication(tempBinary.rhs, tempRhs)).eval(vars);
 		 }
 	}
      }
