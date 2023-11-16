@@ -1,8 +1,13 @@
 package org.ioopm.calculator.ast;
 
 public class Quit extends Command {
-    
-    public Quit() {
-        super();
+    private static final Quit theInstance = new Quit();
+    private Quit() {}
+    public static Quit instance() {
+        return theInstance;
+    }
+
+    public void quitEventloop() {
+        //TODO: Finnish this 
     }
 }

@@ -59,7 +59,7 @@ public class Variable extends Atom {
             return new Negation(tmp.expression);
         } else if(arg instanceof Variable) {
             Variable tmp = (Variable) arg;
-            return new Variable(tmp.getName());
+            return tmp.eval(vars);
         } else {
             Constant tmp = (Constant) arg;
             return new Constant(tmp.getValue());

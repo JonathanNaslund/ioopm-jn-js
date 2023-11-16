@@ -43,15 +43,16 @@ public static void main(String[] args) {
 
   Constant c5 = new Constant(5);
   Constant c6 = new Constant(2);
+  Constant c7 = new Constant(10);
   //System.out.println("C2: " + c2.toString());
   Variable v2 = new Variable("y");
   Variable v3 = new Variable("z");
-//   Addition a2 = new Addition(v3, v2);
-  Addition a2 = new Addition(c5, v2);
-  Constant c7 = new Constant(10);
   Assignment as1 = new Assignment(c7, v2, vars);
+  Assignment as2 = new Assignment(v2, v3, vars);
+  Addition a2 = new Addition(v3, v2);
+//   Addition a2 = new Addition(c5, v2);
   Multiplication m2 = new Multiplication(a2, c6);
-
+  Vars.instance().printVariables(vars);
   System.out.println("(5 + y) * 2 ==> " + m2.eval(vars).toString());
 
  }
