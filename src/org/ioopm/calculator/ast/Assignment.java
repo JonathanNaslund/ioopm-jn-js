@@ -77,7 +77,7 @@ public class Assignment extends Binary {
                 Constant tmp = (Constant) arg;
                 Constant newExpression = new Constant(tmp.getValue());
                 vars.put(tmpRhs, newExpression);
-                return newExpression;
+                return new Assignment(newExpression, tmpRhs, vars);
             }
     
         } else if (Constants.namedConstants.containsKey(rhs)) {

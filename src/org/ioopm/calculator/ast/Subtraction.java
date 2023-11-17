@@ -19,17 +19,11 @@ public class Subtraction extends Binary {
 	    }
     }
     public SymbolicExpression eval(Environment vars) {
-     if(lhs.isConstant() && rhs.isConstant()) {
-      return new Constant(lhs.getValue() - rhs.getValue());
+     SymbolicExpression evaluatedLhs = lhs.eval(vars);
+     SymbolicExpression evaluatedRhs = rhs.eval(vars);
+     if(evaluatedLhs.isConstant() && evaluatedRhs.isConstant()) {
+      return new Constant(evaluatedLhs.getValue() - evaluatedRhs.getValue());
      }
-     else if(lhs.isConstant()) {
-      return new Subtraction(lhs, rhs.eval(vars)).eval(vars);
-     }
-     else if(rhs.isConstant()) {
-      return new Subtraction(lhs.eval(vars), rhs).eval(vars);
-     }
-     else {
-      return new Subtraction(lhs.eval(vars),  rhs.eval(vars)).eval(vars);
-     }
+     return new Subtraction(evaluatedLhs, evaluatedRhs);
     }
 }

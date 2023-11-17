@@ -31,9 +31,9 @@ public class Multiplication extends Binary {
      }
      else if(tempLhs.isConstant()) {
 	if(tempRhs.isVariable()) {
-	      return new Multiplication(tempLhs, tempRhs).eval(vars);
+	      return new Multiplication(tempLhs, tempRhs);
 	} else if(tempRhs instanceof Unary) {
-	      return new Multiplication(tempLhs, tempRhs).eval(vars);
+	      return new Multiplication(tempLhs, tempRhs);
 	} else {
 		Binary tempBinary = (Binary) tempRhs;
 		 if(tempBinary.getName() == "+") {
