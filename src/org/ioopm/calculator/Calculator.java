@@ -11,7 +11,7 @@ public class Calculator {
    System.out.print("");
    inputStr = sc.nextLine();
    SymbolicExpression expr =parser.parse(inputStr, vars);
-   SymbolicExpression evaled = expr.eval();
+   SymbolicExpression evaled = expr.eval(vars);
    System.out.println(evaled.toString());
   } while(inputStr.compareTo("Quit")==0);
  }

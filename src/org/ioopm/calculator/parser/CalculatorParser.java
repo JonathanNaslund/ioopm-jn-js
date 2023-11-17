@@ -122,7 +122,7 @@ public class CalculatorParser {
                     throw new SyntaxErrorException("Error: ans cannot be redefined");
                 }
                 SymbolicExpression key = identifier();
-                result = new Assignment(result, key);
+                result = new Assignment(result, key, vars);
             }
             this.st.nextToken();
         }
@@ -143,8 +143,8 @@ public class CalculatorParser {
             throw new IllegalExpressionException("Error: cannot redefine " + this.st.sval);
         }
 
-        if (Constants.namedConstants.containsKey(this.st.sval)) {
-            result = new NamedConstant(st.sval, Constants.namedConstants.get(st.sval));
+        if (NamedConstant.namedConstants.containsKey(this.st.sval)) {
+            result = new NamedConstant(st.sval, NamedConstant.namedConstants.get(st.sval));
         } else {
             result = new Variable(this.st.sval);
         }

@@ -19,7 +19,7 @@ public class Assignment extends Binary {
         return "=";
     }
 
-    public SymbolicExpression eval(Environment vars, Constants Constants){
+    public SymbolicExpression eval(Environment vars, NamedConstant Constants){
         if (rhs.isVariable()) {
             SymbolicExpression arg = lhs.eval(vars);
             Variable tmpRhs = (Variable) rhs;
