@@ -5,7 +5,7 @@ public class Calculator {
  public static void main(String[] args) {
   Environment vars = new Environment();
   CalculatorParser parser = new CalculatorParser();
-  String inputStr;
+  String inputStr = "";
   do {
    Scanner sc = new Scanner(System.in);
    System.out.print("");
@@ -19,6 +19,6 @@ public class Calculator {
    SymbolicExpression evaled = expr.eval(vars);
    System.out.println(evaled.toString());
    }
-  } while(inputStr.compareTo("Quit")==0);
+  } while(inputStr.compareTo("Quit")!=0);
  }
 }

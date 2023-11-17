@@ -16,13 +16,13 @@ public class Addition extends Binary {
       return new Constant(lhs.getValue() + rhs.getValue());
      }
      else if(lhs.isConstant()) {
-      return new Addition(lhs, rhs.eval(vars));
+      return new Addition(lhs, rhs.eval(vars)).eval(vars);
      }
      else if(rhs.isConstant()) {
-      return new Addition(lhs.eval(vars), rhs);
+      return new Addition(lhs.eval(vars), rhs).eval(vars);
      }
      else {
-      return new Addition(lhs.eval(vars),  rhs.eval(vars));
+      return new Addition(lhs.eval(vars),  rhs.eval(vars)).eval(vars);
      }
     }
 }

@@ -23,13 +23,13 @@ public class Subtraction extends Binary {
       return new Constant(lhs.getValue() - rhs.getValue());
      }
      else if(lhs.isConstant()) {
-      return new Subtraction(lhs, rhs.eval(vars));
+      return new Subtraction(lhs, rhs.eval(vars)).eval(vars);
      }
      else if(rhs.isConstant()) {
-      return new Subtraction(lhs.eval(vars), rhs);
+      return new Subtraction(lhs.eval(vars), rhs).eval(vars);
      }
      else {
-      return new Subtraction(lhs.eval(vars),  rhs.eval(vars));
+      return new Subtraction(lhs.eval(vars),  rhs.eval(vars)).eval(vars);
      }
     }
 }
