@@ -10,9 +10,15 @@ public class Calculator {
    Scanner sc = new Scanner(System.in);
    System.out.print("");
    inputStr = sc.nextLine();
-   SymbolicExpression expr =parser.parse(inputStr, vars);
+   SymbolicExpression expr = null;
+   try {expr = parser.parse(inputStr, vars); }
+   catch(Exception IOException) {
+	   System.out.println("Something went wrong");
+   }
+   if (expr != null)  {
    SymbolicExpression evaled = expr.eval(vars);
    System.out.println(evaled.toString());
+   }
   } while(inputStr.compareTo("Quit")==0);
  }
 }
