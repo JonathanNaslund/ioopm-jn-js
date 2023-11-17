@@ -19,7 +19,7 @@ public class Assignment extends Binary {
         return "=";
     }
 
-    public SymbolicExpression eval(Environment vars){
+    public SymbolicExpression eval(Environment vars, Constants Constants){
         if (rhs.isVariable()) {
             SymbolicExpression arg = lhs.eval(vars);
             Variable tmpRhs = (Variable) rhs;
@@ -79,8 +79,11 @@ public class Assignment extends Binary {
                 vars.put(tmpRhs, newExpression);
                 return newExpression;
             }
+    
+        } else if (Constants.namedConstants.containsKey(rhs)) {
+            throw new IllegalExpressionException("Error: cannot redefine named constant!");
         } else {
-            throw new RuntimeException();
+            throw new RuntimeException("Error: cannot assign to non-variable!");
         }
     }
 }

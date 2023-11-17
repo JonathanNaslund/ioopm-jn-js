@@ -1,5 +1,13 @@
 import org.ioopm.calculator.ast.*;
 
+import ast.Addition;
+import ast.Assignment;
+import ast.Constant;
+import ast.Multiplication;
+import ast.SymbolicExpression;
+import ast.Variable;
+import ast.Vars;
+
 public class Test {
     static void testEvaluating(SymbolicExpression expected, SymbolicExpression e) {
         // SymbolicExpression r = e.eval();

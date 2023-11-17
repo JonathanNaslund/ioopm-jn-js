@@ -53,7 +53,7 @@ public class Multiplication extends Binary {
 	} else {
 		Binary tempBinary = (Binary) tempLhs;
 		 if(tempBinary.getName() == "+") {
-			 return new Addition(new Multiplication(tempBinary.lhs, tempRhs), new Multiplication(tempBinary.rhs, tempRhs)).eval(vars).eval(vars);
+			 return new Addition(new Multiplication(tempBinary.lhs, tempRhs), new Multiplication(tempBinary.rhs, tempRhs)).eval(vars);
 		 }
 		 else { 
 			 //(tempBinary.getName() == "-") {

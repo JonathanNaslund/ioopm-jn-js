@@ -1,5 +1,7 @@
 package org.ioopm.calculator.ast;
 
+import java.lang.Math;
+
 public class Log extends Unary {
 
     public Log(SymbolicExpression expression) {

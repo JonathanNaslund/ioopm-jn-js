@@ -1,5 +1,7 @@
 package org.ioopm.calculator.ast;
 
+import java.lang.Math;
+
 public class Sin extends Unary{
     
     public Sin(SymbolicExpression expression) {
