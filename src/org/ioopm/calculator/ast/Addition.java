@@ -35,5 +35,6 @@ public class Addition extends Binary {
     else {
       return new Addition(lhs.eval(vars),  rhs.eval(vars));
      }
+    //  return new Addition(tmpLhs, tmpRhs);
     }
 }

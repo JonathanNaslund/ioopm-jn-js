@@ -44,5 +44,6 @@ public class Subtraction extends Binary {
     else {
       return new Subtraction(lhs.eval(vars),  rhs.eval(vars));
      }
+    //  return new Subtraction(evaluatedLhs, evaluatedRhs);
     }
 }
