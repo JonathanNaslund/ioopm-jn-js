@@ -7,7 +7,7 @@ public class Quit extends Command {
         return theInstance;
     }
 
-    public void quitEventloop() {
-        //TODO: Finnish this 
+    public boolean quitEventloop() {
+        return false;
     }
 }

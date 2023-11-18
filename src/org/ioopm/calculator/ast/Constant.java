@@ -30,4 +30,9 @@ public class Constant extends Atom {
     public SymbolicExpression eval(Environment vars) {
      return new Constant(this.getValue());
     }
+
+    @Override
+    public boolean hasUndeclaredVariable(Environment vars) {
+        return false;
+    }
 }

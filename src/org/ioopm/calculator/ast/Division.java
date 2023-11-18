@@ -13,15 +13,35 @@ public class Division extends Binary {
 
     @Override
     public SymbolicExpression eval(Environment vars) {
-	SymbolicExpression tempLhs = lhs.eval(vars);
+    SymbolicExpression tempLhs = lhs.eval(vars);
 	SymbolicExpression tempRhs = rhs.eval(vars);
-	if(tempRhs.getValue() == 0) {
-           throw new RuntimeException("Division by 0");
+    if(tempRhs.isConstant()) {
+        if ((tempRhs).getValue() == 0) {
+            throw new RuntimeException("Division by 0");
+        }
 	}
      if(lhs.isConstant() && rhs.isConstant()) {
       return new Constant(lhs.getValue() / rhs.getValue());
-     } else {
-      return new Division(tempLhs,  tempRhs);
+     }
+     else if (lhs.isNamedConstant() && rhs.isNamedConstant()) {
+        return new Division(lhs, rhs.eval(vars)).eval(vars);
+     }
+     else if(lhs.isConstant()) {
+        if (rhs.hasUndeclaredVariable(vars)) {
+            return new Division(lhs, rhs.eval(vars));
+        } else {
+            return new Division(lhs, rhs.eval(vars)).eval(vars);
+        }
+     }
+     else if(rhs.isConstant()) {
+        if (lhs.hasUndeclaredVariable(vars)) {
+            return new Division(lhs.eval(vars), rhs);
+        } else {
+            return new Division(lhs.eval(vars), rhs).eval(vars);
+        }
+    }
+    else {
+      return new Division(lhs.eval(vars),  rhs.eval(vars));
      }
     }
 }

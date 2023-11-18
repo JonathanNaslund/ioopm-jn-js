@@ -45,4 +45,9 @@ public abstract class Binary extends SymbolicExpression {
             return false;
         }
     }
+
+    @Override
+    public boolean hasUndeclaredVariable(Environment vars) {
+        return (rhs.hasUndeclaredVariable(vars) || lhs.hasUndeclaredVariable(vars));
+    }
 }

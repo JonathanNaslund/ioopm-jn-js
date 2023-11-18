@@ -36,6 +36,10 @@ public abstract class SymbolicExpression {
         this.priority = priority;
     }
     public SymbolicExpression eval(Environment vars) {
-        throw new RuntimeException("getValue() called on something which is not a constant");
+        throw new RuntimeException("Eval(vars) on something that is not an operator");
+    }
+
+    public boolean hasUndeclaredVariable(Environment vars) {
+        return this.hasUndeclaredVariable(vars);
     }
 }

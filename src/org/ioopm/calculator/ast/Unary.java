@@ -21,4 +21,9 @@ public abstract class Unary extends SymbolicExpression {
             return false;
         }
     }
+
+    @Override
+    public boolean hasUndeclaredVariable(Environment vars) {
+        return (expression.hasUndeclaredVariable(vars));
+    }
 }

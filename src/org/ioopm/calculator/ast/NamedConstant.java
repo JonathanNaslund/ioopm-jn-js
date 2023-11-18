@@ -27,6 +27,16 @@ public class NamedConstant extends SymbolicExpression{
     }
 
     @Override
+    public SymbolicExpression eval(Environment vars) {
+        return new Constant(value);
+    }
+
+    @Override
+    public boolean hasUndeclaredVariable(Environment vars) {
+        return false;
+    }
+
+    @Override
     public boolean isNamedConstant() {
         return true;
     }
