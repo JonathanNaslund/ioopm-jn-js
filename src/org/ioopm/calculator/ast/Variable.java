@@ -6,10 +6,18 @@ public class Variable extends Atom {
         super(identifier);
     }   
 
+    /**
+     * @return the value of the constant
+     */
     public String toString() {
 	    return this.getVariable();
     }
 
+    /**
+     * Checks if this and an other objects are equal by calling on another equals
+     * @param other the other object to compare to
+     * @return true if they are equal, else false
+     */
     public boolean equals(Object other) {
         if (other instanceof Variable) {
             return this.equals((Variable) other);
@@ -18,15 +26,29 @@ public class Variable extends Atom {
         }
     }
     
+    /**
+     * Checks if the values of this and another variables are the same
+     * @param other the other variable to compare to
+     * @return true if the two values are equal, else false
+     */
     public boolean equals(Variable other) {
         return getVariable().compareTo(other.getVariable()) == 0;
     }
 
+    /**
+     * Hashes the variable name to use as the code for the key. This overrides the original
+     * to hash to variable name and not the variable object.
+     * @return the hashcode after hashing the variable name
+     */
     @Override
     public int hashCode() {
         return this.getVariable().hashCode();
     }
     
+    /**
+     * Returns true to show to caller that this object is a variable
+     * @return true
+     */
     @Override
     public boolean isVariable() {
         return true;
@@ -40,47 +62,11 @@ public class Variable extends Atom {
             return new Variable(this.getVariable());
         }
     } 
-    // @Override
-    // public SymbolicExpression eval(Environment vars) {
-    //     SymbolicExpression arg = vars.get(this);
-    //     if (arg == null) {
-    //         return new Variable(this.getVariable());
-    //     } else if(arg instanceof Addition) {
-    //         Addition tmp = (Addition) arg;
-    //         return new Addition(tmp.lhs, tmp.rhs);
-    //     } else if(arg instanceof Subtraction) {
-    //         Subtraction tmp = (Subtraction) arg;
-    //         return new Subtraction(tmp.lhs, tmp.rhs);
-    //     } else if(arg instanceof Multiplication) {
-    //         Multiplication tmp = (Multiplication) arg;
-    //         return new Multiplication(tmp.lhs, tmp.rhs);
-    //     } else if(arg instanceof Division) {
-    //         Division tmp = (Division) arg;
-    //         return new Division(tmp.lhs, tmp.rhs);
-    //     } else if(arg instanceof Log) {
-    //         Log tmp = (Log) arg;
-    //         return new Log(tmp.expression);
-    //     } else if(arg instanceof Sin) {
-    //         Sin tmp = (Sin) arg;
-    //         return new Sin(tmp.expression);
-    //     } else if(arg instanceof Cos) {
-    //         Cos tmp = (Cos) arg;
-    //         return new Cos(tmp.expression);
-    //     } else if(arg instanceof Exp) {
-    //         Exp tmp = (Exp) arg;
-    //         return new Exp(tmp.expression);
-    //     } else if(arg instanceof Negation) {
-    //         Negation tmp = (Negation) arg;
-    //         return new Negation(tmp.expression);
-    //     } else if(arg instanceof Variable) {
-    //         Variable tmp = (Variable) arg;
-    //         return tmp.eval(vars);
-    //     } else {
-    //         Constant tmp = (Constant) arg;
-    //         return new Constant(tmp.getValue());
-    //     }
-    // } 
 
+    /**
+     * Returns if the variable is undeclared to not
+     * @return true if the variable does not have a value, else false
+     */
     @Override
     public boolean hasUndeclaredVariable(Environment vars) {
         if (vars.get(this) == null) {

@@ -6,11 +6,20 @@ public class Negation extends Unary {
         super(expression, "Neg");
     }
 
+    /**
+     * @return returns the name of operation in as string
+     */
     @Override
     public String getName() {
         return "Neg";
     }
 
+    /**
+     * Evaluates the object. Multiplies -1 to the evaluated expression if there are not any undeclared
+     * variables in the expression.
+     * @param vars A hashtable that holds declared variables and their values
+     * @return Returns the evaluated object as either a new constant or a new Negation
+     */
     @Override
     public SymbolicExpression eval(Environment vars) {
         SymbolicExpression arg = this.expression.eval(vars);

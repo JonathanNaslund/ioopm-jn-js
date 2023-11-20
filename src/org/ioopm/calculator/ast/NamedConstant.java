@@ -22,20 +22,48 @@ public class NamedConstant extends SymbolicExpression{
         this.value = value;
     }
 
-    public String getVariable() {
-        return this.variable;
+    // /**
+    //  * Gets the name of the named constant
+    //  * @return the name of the named constant
+    //  */
+    // public String getVariable() {
+    //     return this.variable;
+    // }
+
+    /**
+     * Gets the name of the named constant
+     * @return the name of the named constant
+     */
+    @Override
+    public String toString() {
+        return variable;
     }
 
+    /**
+     * Creates and returns a new constant with the value of the named constant
+     * @param vars A hashtable that holds declared variables and their values
+     * @return a new constant
+     */
     @Override
     public SymbolicExpression eval(Environment vars) {
         return new Constant(value);
     }
 
+    /**
+     * Returns false to show caller that this branch of the tree does not
+     * have a undeclared variable.
+     * @param vars A hashtable that holds declared variables and their values
+     * @return false
+     */
     @Override
     public boolean hasUndeclaredVariable(Environment vars) {
         return false;
     }
 
+    /**
+     * Returns true to show the caller that this object is a named contant
+     * @return true
+     */
     @Override
     public boolean isNamedConstant() {
         return true;

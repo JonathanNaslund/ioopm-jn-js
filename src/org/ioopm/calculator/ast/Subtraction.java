@@ -6,44 +6,54 @@ public class Subtraction extends Binary {
         super(lhs, rhs, "-", 1);
     }
 
+    /**
+     * @return returns the name of operation in as string
+     */
     @Override
     public String getName() {
         return "-";
     }
 
-    public String toString() {
-	    if(getPriority() == 3) {
-	    	return "(" + lhs.toString() + this.getName() + rhs.toString() + ")";
-	    } else {
-	    	return lhs.toString() + this.getName() + rhs.toString();
-	    }
-    }
+    // public String toString() {
+	//     if(getPriority() == 3) {
+	//     	return "(" + lhs.toString() + this.getName() + rhs.toString() + ")";
+	//     } else {
+	//     	return lhs.toString() + this.getName() + rhs.toString();
+	//     }
+    // }
 
+    /**
+     * Evaluates the object. Subtracts lhs from rhs if there are not any undeclared variables in any
+     * of the sides.
+     * @param vars A hashtable that holds declared variables and their values
+     * @return Returns the evaluated object as either a new constant or a new subtraction
+     */
     @Override
     public SymbolicExpression eval(Environment vars) {
-     if(lhs.isConstant() && rhs.isConstant()) {
-      return new Constant(lhs.getValue() -  rhs.getValue());
+        SymbolicExpression rhsTemp = rhs.eval(vars);
+        SymbolicExpression lhsTemp = lhs.eval(vars);
+     if(lhsTemp.isConstant() && rhsTemp.isConstant()) {
+      return new Constant(lhsTemp.getValue() -  rhsTemp.getValue());
      }
-     else if (lhs.isNamedConstant() && rhs.isNamedConstant()) {
-        return new Subtraction(lhs, rhs.eval(vars)).eval(vars);
+     else if (lhsTemp.isNamedConstant() && rhsTemp.isNamedConstant()) {
+        return new Subtraction(lhsTemp, rhsTemp.eval(vars)).eval(vars);
      }
-     else if(lhs.isConstant()) {
-        if (rhs.hasUndeclaredVariable(vars)) {
-            return new Subtraction(lhs, rhs.eval(vars));
+     else if(lhsTemp.isConstant()) {
+        if (rhsTemp.hasUndeclaredVariable(vars)) {
+            return new Subtraction(lhsTemp, rhsTemp.eval(vars));
         } else {
-            return new Subtraction(lhs, rhs.eval(vars)).eval(vars);
+            return new Subtraction(lhsTemp, rhsTemp.eval(vars)).eval(vars);
         }
      }
-     else if(rhs.isConstant()) {
-        if (lhs.hasUndeclaredVariable(vars)) {
-            return new Subtraction(lhs.eval(vars), rhs);
+     else if(rhsTemp.isConstant()) {
+        if (lhsTemp.hasUndeclaredVariable(vars)) {
+            return new Subtraction(lhsTemp.eval(vars), rhsTemp);
         } else {
-            return new Subtraction(lhs.eval(vars), rhs).eval(vars);
+            return new Subtraction(lhsTemp.eval(vars), rhsTemp).eval(vars);
         }
     }
     else {
-      return new Subtraction(lhs.eval(vars),  rhs.eval(vars));
+      return new Subtraction(lhsTemp.eval(vars),  rhsTemp.eval(vars));
      }
-    //  return new Subtraction(evaluatedLhs, evaluatedRhs);
     }
 }

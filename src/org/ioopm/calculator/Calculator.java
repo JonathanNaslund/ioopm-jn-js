@@ -25,12 +25,11 @@ public class Calculator {
         keepGoing = ((Quit)expr).quitEventloop();
     } else if (expr instanceof Vars) {
         ((Vars)expr).printVariables(vars);
-    } else if (expr instanceof Clean) {
-        ((Clean)expr).cleanVariables(vars);
+    } else if (expr instanceof Clear) {
+        ((Clear)expr).clearVariables(vars);
     }
    }
    else if (expr != null)  {
-    // SymbolicExpression evaled = expr.eval(vars, constants);
     SymbolicExpression evaled = expr.eval(vars);
     System.out.println(evaled.toString());
    }

@@ -6,80 +6,46 @@ public class Multiplication extends Binary {
         super(lhs, rhs, "*", 2); 
     }
 
+    /**
+     * @return returns the name of operation in as string
+     */
     @Override
     public String getName() {
         return "*";
     }
 
+    /**
+     * Evaluates the object. Multiply lhs to rhs if there are not any undeclared variables in any
+     * of the sides.
+     * @param vars A hashtable that holds declared variables and their values
+     * @return Returns the evaluated object as either a new constant or a new multiplication
+     */
     @Override
     public SymbolicExpression eval(Environment vars) {
-     if(lhs.isConstant() && rhs.isConstant()) {
-      return new Constant(lhs.getValue() * rhs.getValue());
+        SymbolicExpression rhsTemp = rhs.eval(vars);
+        SymbolicExpression lhsTemp = lhs.eval(vars);
+     if(lhsTemp.isConstant() && rhsTemp.isConstant()) {
+      return new Constant(lhsTemp.getValue() * rhsTemp.getValue());
      }
-     else if (lhs.isNamedConstant() && rhs.isNamedConstant()) {
-        return new Multiplication(lhs, rhs.eval(vars)).eval(vars);
+     else if (lhs.isNamedConstant() && rhsTemp.isNamedConstant()) {
+        return new Multiplication(lhsTemp, rhsTemp.eval(vars)).eval(vars);
      }
-     else if(lhs.isConstant()) {
-        if (rhs.hasUndeclaredVariable(vars)) {
-            return new Multiplication(lhs, rhs.eval(vars));
+     else if(lhsTemp.isConstant()) {
+        if (rhsTemp.hasUndeclaredVariable(vars)) {
+            return new Multiplication(lhsTemp, rhsTemp.eval(vars));
         } else {
-            return new Multiplication(lhs, rhs.eval(vars)).eval(vars);
+            return new Multiplication(lhsTemp, rhsTemp.eval(vars)).eval(vars);
         }
      }
-     else if(rhs.isConstant()) {
-        if (lhs.hasUndeclaredVariable(vars)) {
-            return new Multiplication(lhs.eval(vars), rhs);
+     else if(rhsTemp.isConstant()) {
+        if (lhsTemp.hasUndeclaredVariable(vars)) {
+            return new Multiplication(lhsTemp.eval(vars), rhsTemp);
         } else {
-            return new Multiplication(lhs.eval(vars), rhs).eval(vars);
+            return new Multiplication(lhsTemp.eval(vars), rhsTemp).eval(vars);
         }
     }
     else {
-      return new Multiplication(lhs.eval(vars),  rhs.eval(vars));
+      return new Multiplication(lhsTemp.eval(vars),  rhsTemp.eval(vars));
      }
     }
-
-
-	// @Override
-    // public SymbolicExpression eval(Environment vars) {
-    // 	SymbolicExpression tempLhs = lhs.eval(vars);
-	// SymbolicExpression tempRhs = rhs.eval(vars);
-    //  if(tempLhs.isConstant() && tempRhs.isConstant()) {
-    //   return new Constant(tempLhs.getValue() * tempRhs.getValue());
-    //  }
-    //  else if(tempLhs.isConstant()) {
-	// if(tempRhs.isVariable()) {
-	//       return new Multiplication(tempLhs, tempRhs).eval(vars);
-	// } else if(tempRhs instanceof Unary) {
-	//       return new Multiplication(tempLhs, tempRhs).eval(vars);
-	// } else {
-	// 	Binary tempBinary = (Binary) tempRhs;
-	// 	 if(tempBinary.getName() == "+") {
-	// 		 return new Addition(new Multiplication(tempLhs, tempBinary.lhs), new Multiplication(tempLhs, tempBinary.rhs)).eval(vars);
-	// 	 }
-	// 	 else {
-	// 		 //(tempBinary.getName() == "-") {
-	// 		 return new Subtraction(new Multiplication(tempLhs, tempBinary.lhs), new Multiplication(tempLhs, tempBinary.rhs)).eval(vars);
-	// 	 }
-	// }
-    //  }
-    //  else if(tempRhs.isConstant()) {
-	// if(tempLhs.isVariable()) {
-	//       return new Multiplication(tempLhs, tempRhs);
-	// } else if(tempLhs instanceof Unary) {
-	//       return new Multiplication(tempLhs, tempRhs).eval(vars);
-	// } else {
-	// 	Binary tempBinary = (Binary) tempLhs;
-	// 	 if(tempBinary.getName() == "+") {
-	// 		 return new Addition(new Multiplication(tempBinary.lhs, tempRhs), new Multiplication(tempBinary.rhs, tempRhs)).eval(vars);
-	// 	 }
-	// 	 else { 
-	// 		 //(tempBinary.getName() == "-") {
-	// 		 return new Subtraction(new Multiplication(tempBinary.lhs, tempRhs), new Multiplication(tempBinary.rhs, tempRhs)).eval(vars);
-	// 	 }
-	// }
-    //  }
-    //  else {
-    //   return new Multiplication(tempLhs, tempRhs);
-    //  }
-    // }
 }

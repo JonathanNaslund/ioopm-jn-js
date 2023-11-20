@@ -7,7 +7,11 @@ public class Clear extends Command{
         return theInstance;
     }
 
-    public void clearVariables() {
-        //Hashmap.clear();
+    /**
+     * Clears the enviroment(hashtable) of all key-value pairs
+     * @param vars A hashtable that holds declared variables and their values
+     */
+    public void clearVariables(Environment vars) {
+        vars.clear();
     }
 }

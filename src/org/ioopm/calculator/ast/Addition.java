@@ -6,35 +6,46 @@ public class Addition extends Binary {
         super(lhs, rhs, "+", 1);
     }
 
+    /**
+     * @return returns the name of operation in as string
+     */
     @Override
     public String getName() {
         return "+";
     }
+    
+    /**
+     * Evaluates the object. Adds lhs to rhs if there are not any undeclared variables in any
+     * of the sides.
+     * @param vars A hashtable that holds declared variables and their values
+     * @return Returns the evaluated object as either a new constant or a new addition
+     */
     @Override
     public SymbolicExpression eval(Environment vars) {
-     if(lhs.isConstant() && rhs.isConstant()) {
-      return new Constant(lhs.getValue() + rhs.getValue());
+        SymbolicExpression rhsTemp = rhs.eval(vars);
+        SymbolicExpression lhsTemp = lhs.eval(vars);
+     if(lhsTemp.isConstant() && rhsTemp.isConstant()) {
+      return new Constant(lhsTemp.getValue() + rhsTemp.getValue());
      }
-     else if (lhs.isNamedConstant() && rhs.isNamedConstant()) {
-        return new Addition(lhs, rhs.eval(vars)).eval(vars);
+     else if (lhsTemp.isNamedConstant() && rhsTemp.isNamedConstant()) {
+        return new Addition(lhsTemp, rhsTemp.eval(vars)).eval(vars);
      }
      else if(lhs.isConstant()) {
         if (rhs.hasUndeclaredVariable(vars)) {
-            return new Addition(lhs, rhs.eval(vars));
+            return new Addition(lhsTemp, rhsTemp.eval(vars));
         } else {
-            return new Addition(lhs, rhs.eval(vars)).eval(vars);
+            return new Addition(lhsTemp, rhsTemp.eval(vars)).eval(vars);
         }
      }
      else if(rhs.isConstant()) {
         if (lhs.hasUndeclaredVariable(vars)) {
-            return new Addition(lhs.eval(vars), rhs);
+            return new Addition(lhsTemp.eval(vars), rhsTemp);
         } else {
-            return new Addition(lhs.eval(vars), rhs).eval(vars);
+            return new Addition(lhsTemp.eval(vars), rhsTemp).eval(vars);
         }
     }
     else {
-      return new Addition(lhs.eval(vars),  rhs.eval(vars));
+      return new Addition(lhsTemp.eval(vars),  rhsTemp.eval(vars));
      }
-    //  return new Addition(tmpLhs, tmpRhs);
     }
 }

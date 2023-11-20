@@ -8,11 +8,20 @@ public class Log extends Unary {
         super(expression, "Log");
     }
 
+    /**
+     * @return returns the name of operation in as string
+     */
     @Override
     public String getName() {
         return "Log";
     }
 
+    /**
+     * Evaluates the object. Takes Log of the evaluated expression if there are not any undeclared
+     * variables in the expression.
+     * @param vars A hashtable that holds declared variables and their values
+     * @return Returns the evaluated object as either a new constant or a new Log
+     */
     @Override
     public SymbolicExpression eval(Environment vars) {
         SymbolicExpression arg = this.expression.eval(vars);

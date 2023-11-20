@@ -1,7 +1,5 @@
 package org.ioopm.calculator.ast;
 
-import java.util.Hashtable;
-
 public class Assignment extends Binary {
     
     public Assignment(SymbolicExpression lhs, SymbolicExpression rhs, Environment vars) {
@@ -9,11 +7,21 @@ public class Assignment extends Binary {
         this.eval(vars);
     }
 
+    /**
+     * @return returns the name of operation in as string
+     */
     @Override
     public String getName() {
         return "=";
     }
 
+    /**
+     * Declares a value to a variable and puts the pair in a hashtable to hold key(variable)-value pair
+     * @param vars A hashtable that holds declared variables and their values
+     * @return Returns the object
+     * @throws IllegalExpressionException if rhs is a named constant
+     * @throws RuntimeException if rhs is not a variable or a named constant
+     */
     @Override
     public SymbolicExpression eval(Environment vars){
         if (rhs.isVariable()) {
@@ -25,72 +33,4 @@ public class Assignment extends Binary {
             throw new RuntimeException("Error: cannot assign to non-variable!");
         }
     }
-
-    // public SymbolicExpression eval(Environment vars){
-    //     if (rhs.isVariable()) {
-    //         SymbolicExpression arg = lhs.eval(vars);
-    //         Variable tmpRhs = (Variable) rhs;
-    //         if(arg instanceof Addition) {
-    //             Addition tmp = (Addition) arg;
-    //             Addition newExpression = new Addition(tmp.lhs, tmp.rhs);
-    //             vars.put(tmpRhs, newExpression);
-    //             return newExpression;
-    //         } else if(arg instanceof Subtraction) {
-    //             Subtraction tmp = (Subtraction) arg;
-    //             Subtraction newExpression = new Subtraction(tmp.lhs, tmp.rhs);
-    //             vars.put(tmpRhs, newExpression);
-    //             return newExpression;
-    //         } else if(arg instanceof Multiplication) {
-    //             Multiplication tmp = (Multiplication) arg;
-    //             Multiplication newExpression = new Multiplication(tmp.lhs, tmp.rhs);
-    //             vars.put(tmpRhs, newExpression);
-    //             return newExpression;
-    //         } else if(arg instanceof Division) {
-    //             Division tmp = (Division) arg;
-    //             Division newExpression = new Division(tmp.lhs, tmp.rhs);
-    //             vars.put(tmpRhs, newExpression);
-    //             return newExpression;
-    //         } else if(arg instanceof Log) {
-    //             Log tmp = (Log) arg;
-    //             Log newExpression = new Log(tmp.expression);
-    //             vars.put(tmpRhs, newExpression);
-    //             return newExpression;
-    //         } else if(arg instanceof Sin) {
-    //             Sin tmp = (Sin) arg;
-    //             Sin newExpression = new Sin(tmp.expression);
-    //             vars.put(tmpRhs, newExpression);
-    //             return newExpression;
-    //         } else if(arg instanceof Cos) {
-    //             Cos tmp = (Cos) arg;
-    //             Cos newExpression = new Cos(tmp.expression);
-    //             vars.put(tmpRhs, newExpression);
-    //             return newExpression;
-    //         } else if(arg instanceof Exp) {
-    //             Exp tmp = (Exp) arg;
-    //             Exp newExpression = new Exp(tmp.expression);
-    //             vars.put(tmpRhs, newExpression);
-    //             return newExpression;
-    //         } else if(arg instanceof Negation) {
-    //             Negation tmp = (Negation) arg;
-    //             Negation newExpression = new Negation(tmp.expression);
-    //             vars.put(tmpRhs, newExpression);
-    //             return newExpression;
-    //         } else if(arg instanceof Variable) {
-    //             Variable tmp = (Variable) arg;
-    //             Variable newExpression = new Variable(tmp.getName());
-    //             vars.put(tmpRhs, newExpression);
-    //             return newExpression;
-    //         } else {
-    //             Constant tmp = (Constant) arg;
-    //             Constant newExpression = new Constant(tmp.getValue());
-    //             vars.put(tmpRhs, newExpression);
-    //             return newExpression;
-    //         }
-    
-    //     } else if (rhs instanceof NamedConstant) {
-    //         throw new IllegalExpressionException("Error: cannot redefine named constant!");
-    //     } else {
-    //         throw new RuntimeException("Error: cannot assign to non-variable!");
-    //     }
-    // }
 }

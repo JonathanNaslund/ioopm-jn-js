@@ -7,6 +7,10 @@ public class Quit extends Command {
         return theInstance;
     }
 
+    /**
+     * Returns false if called
+     * @return false
+     */
     public boolean quitEventloop() {
         return false;
     }
