@@ -21,7 +21,7 @@ public class Addition extends Binary {
      * @return Returns the evaluated object as either a new constant or a new addition
      */
     @Override
-    public SymbolicExpression eval(Environment vars) {
+    public SymbolicExpression eval(Environment vars) throws DivideByZeroException{
         SymbolicExpression rhsTemp = rhs.eval(vars);
         SymbolicExpression lhsTemp = lhs.eval(vars);
      if(lhsTemp.isConstant() && rhsTemp.isConstant()) {

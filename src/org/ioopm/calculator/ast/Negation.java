@@ -21,7 +21,7 @@ public class Negation extends Unary {
      * @return Returns the evaluated object as either a new constant or a new Negation
      */
     @Override
-    public SymbolicExpression eval(Environment vars) {
+    public SymbolicExpression eval(Environment vars) throws DivideByZeroException{
         SymbolicExpression arg = this.expression.eval(vars);
         if (arg.isConstant()) {
             return new Constant(-1 * arg.getValue());

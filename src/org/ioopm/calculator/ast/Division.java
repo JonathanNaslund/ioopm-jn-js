@@ -23,12 +23,12 @@ public class Division extends Binary {
      * @throws RuntieException if rhs is equal to 0.
      */
     @Override
-    public SymbolicExpression eval(Environment vars) {
+    public SymbolicExpression eval(Environment vars) throws DivideByZeroException{
         SymbolicExpression rhsTemp = rhs.eval(vars);
         SymbolicExpression lhsTemp = lhs.eval(vars);
-    if(rhsTemp.isConstant()) {
-        if ((rhsTemp).getValue() == 0) {
-            throw new DivideByZeroException("Division by 0");
+    if(rhsTemp.isConstant()) { 
+        if ((rhsTemp).getValue() == 0) { 
+            throw new DivideByZeroException("Division by 0"); 
         }
 	}
      if(lhsTemp.isConstant() && rhsTemp.isConstant()) {

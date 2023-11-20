@@ -3,4 +3,4 @@ all:
 run:
 	java -cp classes org.ioopm.calculator.Calculator
 clean:
-	rm -rf classes
+	rm -rf class

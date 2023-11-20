@@ -61,7 +61,7 @@ public class Variable extends Atom {
      * @return the value if declared, else a new variable
      */
     @Override
-    public SymbolicExpression eval(Environment vars) {
+    public SymbolicExpression eval(Environment vars) throws DivideByZeroException{
         if (vars.get(this) != null) {
             return vars.get(this).eval(vars);
         } else {

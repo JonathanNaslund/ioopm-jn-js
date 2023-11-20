@@ -23,7 +23,7 @@ public class Assignment extends Binary {
      * @throws RuntimeException if rhs is not a variable or a named constant
      */
     @Override
-    public SymbolicExpression eval(Environment vars){
+    public SymbolicExpression eval(Environment vars) {
         if (rhs.isVariable()) {
             vars.put((Variable)rhs, lhs);
             return this;

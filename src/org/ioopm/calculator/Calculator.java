@@ -23,9 +23,6 @@ public class Calculator {
    catch(IOException IOException) {
 	   System.out.println("Something went wrong");
    }
-   catch(DivideByZeroException e) {
-        System.out.println("Can't divide by 0");
-   }
    if (expr instanceof Command) {
     if (expr instanceof Quit) {
         keepGoing = ((Quit)expr).quitEventloop();

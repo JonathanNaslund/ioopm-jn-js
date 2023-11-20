@@ -23,7 +23,7 @@ public class Log extends Unary {
      * @return Returns the evaluated object as either a new constant or a new Log
      */
     @Override
-    public SymbolicExpression eval(Environment vars) {
+    public SymbolicExpression eval(Environment vars) throws DivideByZeroException{
         SymbolicExpression arg = this.expression.eval(vars);
         if (arg.isConstant()) {
             return new Constant(Math.log(arg.getValue()));

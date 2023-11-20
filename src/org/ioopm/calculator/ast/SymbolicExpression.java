@@ -82,7 +82,7 @@ public abstract class SymbolicExpression {
      * @param vars A hashtable that holds declared variables and their values
      * @throws RuntimeException if called on a symbolicExpression that does not have an operator
      */
-    public SymbolicExpression eval(Environment vars) {
+    public SymbolicExpression eval(Environment vars) throws DivideByZeroException {
         throw new RuntimeException("Eval(vars) on something that is not an operator");
     }
 
