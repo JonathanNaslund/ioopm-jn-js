@@ -31,6 +31,9 @@ public class Calculator {
    }
    else if (expr != null)  {
     SymbolicExpression evaled = expr.eval(vars);
+    if (evaled instanceof Constant) {
+        new NamedConstant("Answer", evaled.getValue());
+    }
     System.out.println(evaled.toString());
    }
   } while(keepGoing);
