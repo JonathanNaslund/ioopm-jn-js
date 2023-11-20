@@ -75,5 +75,9 @@ public class Variable extends Atom {
             return false;
         }
     }
+    @Override
+    public double getValue() {
+        throw new RuntimeException("getValue() on a variable");
+    }
 }
 

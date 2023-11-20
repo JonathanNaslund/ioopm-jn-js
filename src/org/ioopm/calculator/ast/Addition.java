@@ -28,24 +28,24 @@ public class Addition extends Binary {
       return new Constant(lhsTemp.getValue() + rhsTemp.getValue());
      }
      else if (lhsTemp.isNamedConstant() && rhsTemp.isNamedConstant()) {
-        return new Addition(lhsTemp, rhsTemp.eval(vars)).eval(vars);
+        return new Addition(lhsTemp, rhsTemp).eval(vars);
      }
      else if(lhs.isConstant()) {
         if (rhs.hasUndeclaredVariable(vars)) {
-            return new Addition(lhsTemp, rhsTemp.eval(vars));
+            return new Addition(lhsTemp, rhsTemp);
         } else {
-            return new Addition(lhsTemp, rhsTemp.eval(vars)).eval(vars);
+            return new Addition(lhsTemp, rhsTemp).eval(vars);
         }
      }
      else if(rhs.isConstant()) {
         if (lhs.hasUndeclaredVariable(vars)) {
-            return new Addition(lhsTemp.eval(vars), rhsTemp);
+            return new Addition(lhsTemp, rhsTemp);
         } else {
-            return new Addition(lhsTemp.eval(vars), rhsTemp).eval(vars);
+            return new Addition(lhsTemp, rhsTemp).eval(vars);
         }
     }
     else {
-      return new Addition(lhsTemp.eval(vars),  rhsTemp.eval(vars));
+      return new Addition(lhsTemp,  rhsTemp);
      }
     }
 }

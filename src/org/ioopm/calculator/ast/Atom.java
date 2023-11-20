@@ -18,7 +18,7 @@ public abstract class Atom extends SymbolicExpression{
      * Gets the variable of the atom
      * @return the variable
      */
-	public String getVariable() {
+    	public String getVariable() {
 		return variable;
 	}
 
