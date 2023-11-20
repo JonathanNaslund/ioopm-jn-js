@@ -31,7 +31,8 @@ public class CalculatorParser {
     // or 10 + x = L is not allowed
     private final ArrayList < String > unallowedVars = new ArrayList < String > (Arrays.asList("Quit",
         "Vars",
-        "Clear"));
+        "Clear"
+        ));
 
     /**
      * Used to parse the inputted string by the Calculator program
@@ -118,7 +119,7 @@ public class CalculatorParser {
             } else if (this.st.ttype != this.st.TT_WORD) {
                 throw new SyntaxErrorException("Error: Not a valid assignment of a variable"); //this handles faulty inputs after the equal sign eg. 1 = (x etc
             } else {
-                if (this.st.sval.equals("ans")) {
+                if (this.st.sval.equals("Ans")) {
                     throw new SyntaxErrorException("Error: ans cannot be redefined");
                 }
                 SymbolicExpression key = identifier();

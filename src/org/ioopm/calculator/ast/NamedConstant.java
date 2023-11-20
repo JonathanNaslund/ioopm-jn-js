@@ -12,7 +12,7 @@ public class NamedConstant extends SymbolicExpression{
         NamedConstant.namedConstants.put("pi", Math.PI);
         NamedConstant.namedConstants.put("e",  Math.E);
         NamedConstant.namedConstants.put("L", 6.022140857*Math.pow(10, 23));
-        NamedConstant.namedConstants.put("Answer", (double) 0);
+        NamedConstant.namedConstants.put("Answer", (double)42);
 
     }
 
@@ -22,15 +22,6 @@ public class NamedConstant extends SymbolicExpression{
         this.variable = name;
         this.value = value;
     }
-    
-
-    // /**
-    //  * Gets the name of the named constant
-    //  * @return the name of the named constant
-    //  */
-    // public String getVariable() {
-    //     return this.variable;
-    // }
 
     /**
      * Gets the name of the named constant

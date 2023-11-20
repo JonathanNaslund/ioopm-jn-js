@@ -54,6 +54,12 @@ public class Variable extends Atom {
         return true;
     }
 
+    /**
+     * Returns a the evaluated value if the variable has a declared value, else return
+     * a new variable with the same variable name
+     * @param vars A hashtable that holds declared variables and their values
+     * @return the value if declared, else a new variable
+     */
     @Override
     public SymbolicExpression eval(Environment vars) {
         if (vars.get(this) != null) {

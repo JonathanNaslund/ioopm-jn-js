@@ -5,12 +5,12 @@ public abstract class Atom extends SymbolicExpression{
     private double value;
 
     public Atom(double value) {
-        super(5);
+        super(1);
         this.value = value;
     }
 
     public Atom(String variable) {
-        super(5);
+        super(1);
         this.variable = variable;
     }
 

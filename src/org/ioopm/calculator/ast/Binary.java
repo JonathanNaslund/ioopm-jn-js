@@ -18,12 +18,10 @@ public abstract class Binary extends SymbolicExpression {
      */
     private void changePriority() {
         if (this instanceof Multiplication || this instanceof Division) {
-            if ((lhs instanceof Addition || lhs instanceof Subtraction) && (rhs instanceof Addition || rhs instanceof Subtraction)) {
+            if (lhs instanceof Addition || lhs instanceof Subtraction) {
                 lhs.setPriority(3);
-                rhs.setPriority(3);
-            } else if (lhs instanceof Addition || lhs instanceof Subtraction) {
-                lhs.setPriority(3);
-            } else if (rhs instanceof Addition || rhs instanceof Subtraction) {
+            } 
+            if (rhs instanceof Addition || rhs instanceof Subtraction) {
                 rhs.setPriority(3);
             }
         } else if (this instanceof Subtraction && rhs instanceof Addition) {

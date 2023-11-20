@@ -28,7 +28,7 @@ public class Division extends Binary {
         SymbolicExpression lhsTemp = lhs.eval(vars);
     if(rhsTemp.isConstant()) {
         if ((rhsTemp).getValue() == 0) {
-            throw new RuntimeException("Division by 0");
+            throw new DivideByZeroException("Division by 0");
         }
 	}
      if(lhsTemp.isConstant() && rhsTemp.isConstant()) {
