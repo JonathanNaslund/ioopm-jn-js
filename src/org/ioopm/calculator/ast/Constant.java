@@ -65,4 +65,9 @@ public class Constant extends Atom {
     public boolean hasUndeclaredVariable(Environment vars) {
         return false;
     }
+
+    @Override
+    public String getVariable() {
+        throw new RuntimeException("getVariable() on a constant");
+    }
 }

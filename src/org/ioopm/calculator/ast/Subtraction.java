@@ -36,24 +36,24 @@ public class Subtraction extends Binary {
       return new Constant(lhsTemp.getValue() -  rhsTemp.getValue());
      }
      else if (lhsTemp.isNamedConstant() && rhsTemp.isNamedConstant()) {
-        return new Subtraction(lhsTemp, rhsTemp.eval(vars)).eval(vars);
+        return new Subtraction(lhsTemp, rhsTemp).eval(vars);
      }
      else if(lhsTemp.isConstant()) {
         if (rhsTemp.hasUndeclaredVariable(vars)) {
-            return new Subtraction(lhsTemp, rhsTemp.eval(vars));
+            return new Subtraction(lhsTemp, rhsTemp);
         } else {
-            return new Subtraction(lhsTemp, rhsTemp.eval(vars)).eval(vars);
+            return new Subtraction(lhsTemp, rhsTemp).eval(vars);
         }
      }
      else if(rhsTemp.isConstant()) {
         if (lhsTemp.hasUndeclaredVariable(vars)) {
-            return new Subtraction(lhsTemp.eval(vars), rhsTemp);
+            return new Subtraction(lhsTemp, rhsTemp);
         } else {
-            return new Subtraction(lhsTemp.eval(vars), rhsTemp).eval(vars);
+            return new Subtraction(lhsTemp, rhsTemp).eval(vars);
         }
     }
     else {
-      return new Subtraction(lhsTemp.eval(vars),  rhsTemp.eval(vars));
+      return new Subtraction(lhsTemp, rhsTemp);
      }
     }
 }

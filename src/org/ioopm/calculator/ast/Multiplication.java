@@ -28,24 +28,24 @@ public class Multiplication extends Binary {
       return new Constant(lhsTemp.getValue() * rhsTemp.getValue());
      }
      else if (lhs.isNamedConstant() && rhsTemp.isNamedConstant()) {
-        return new Multiplication(lhsTemp, rhsTemp.eval(vars)).eval(vars);
+        return new Multiplication(lhsTemp, rhsTemp).eval(vars);
      }
      else if(lhsTemp.isConstant()) {
         if (rhsTemp.hasUndeclaredVariable(vars)) {
-            return new Multiplication(lhsTemp, rhsTemp.eval(vars));
+            return new Multiplication(lhsTemp, rhsTemp);
         } else {
-            return new Multiplication(lhsTemp, rhsTemp.eval(vars)).eval(vars);
+            return new Multiplication(lhsTemp, rhsTemp).eval(vars);
         }
      }
      else if(rhsTemp.isConstant()) {
         if (lhsTemp.hasUndeclaredVariable(vars)) {
-            return new Multiplication(lhsTemp.eval(vars), rhsTemp);
+            return new Multiplication(lhsTemp, rhsTemp);
         } else {
-            return new Multiplication(lhsTemp.eval(vars), rhsTemp).eval(vars);
+            return new Multiplication(lhsTemp, rhsTemp).eval(vars);
         }
     }
     else {
-      return new Multiplication(lhsTemp.eval(vars),  rhsTemp.eval(vars));
+      return new Multiplication(lhsTemp,  rhsTemp);
      }
     }
 }
